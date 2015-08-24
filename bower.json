@@ -1,0 +1,14 @@
+{
+   "name": "base",
+   "private": true,
+   "ignore": [
+      "**/.*",
+      "/bower_components",
+      "/demo",
+      "/test"
+   
+   ],
+   "dependencies": {
+      "jquery": "1.10.2"
+   }
+}
