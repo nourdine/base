@@ -2,7 +2,7 @@
 
    "use strict";
 
-   global.base.NS("base.geo");
+   global.base.ns("base.geo");
 
    var options = {
       enableHighAccuracy: true,

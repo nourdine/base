@@ -1,38 +1,35 @@
-(function(global, $) {
+(function(global, $, base) {
 
    "use strict";
 
-   global.base.NS("base.ui");
+   global.base.ns("base.ui");
 
    var duration = 1000000;
    var cookies = base.persistency.Cookies;
    var rootSelector = "warn-once";
    var cookieName = "c_a"; // cookies acceptance... or something
    var initialized = false;
+   var deferred;
 
    function setCookie() {
       cookies.create(cookieName, "true", duration, document.domain);
    }
 
-   var K = base.ui.WarnOnce = {};
+   var O = base.ui.WarnOnce = {};
 
-   K._HTMLtemplate = '<div class="' + rootSelector + '">\n\
+   O._HTMLtemplate = '<div class="' + rootSelector + '">\n\
                             <div class="wrapper">\n\
                                 <span class="text"></span>\n\
                                 <span class="close"></span>\n\
                             </div>\n\
                         </div>';
 
-   K._attachEvents = function() {
+   O._attachEvents = function() {
       var self = this;
       this._$root.find('.close').on('click', function() {
          setCookie();
          self.close();
-      });
-      this._$root.find('a').on('click', function(e) {
-         e.preventDefault();
-         setCookie();
-         window.location = this.href;
+         deferred.resolve();
       });
    };
 
@@ -41,7 +38,8 @@
     * 
     * @param {string/HTMLElement} message A string or an HTML element containing the message.
     */
-   K.init = function(message, closeLabel) {
+   O.init = function(message, closeLabel) {
+      deferred = $.Deferred();
       if (!initialized && !cookies.has(cookieName)) {
          $('body').prepend(this._HTMLtemplate);
          this._$root = $('.' + rootSelector);
@@ -51,21 +49,24 @@
          this._attachEvents();
          this.open();
          initialized = true;
+      } else {
+         deferred.resolve();
       }
+      return deferred;
    };
 
    /**
     * Open up the warning
     */
-   K.open = function() {
+   O.open = function() {
       this._$root.slideDown();
    };
 
    /**
     * Shuts the warning
     */
-   K.close = function() {
+   O.close = function() {
       this._$root.slideUp();
    };
 
-})(window, jQuery);
+})(window, jQuery, base);

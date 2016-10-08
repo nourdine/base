@@ -2,7 +2,7 @@
 
    "use strict";
 
-   global.base.NS("base.persistency");
+   global.base.ns("base.persistency");
 
    base.persistency.Cookies = {
       create: function(name, value, hours, domain) {

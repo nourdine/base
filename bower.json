@@ -1,11 +1,9 @@
 {
    "name": "base",
-   "private": true,
    "ignore": [
       "**/.*",
       "/bower_components",
-      "/demo",
-      "/test"
+      "/demo"
    
    ],
    "dependencies": {

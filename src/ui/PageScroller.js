@@ -2,7 +2,7 @@
 
    "use strict";
 
-   global.base.NS("base.ui");
+   global.base.ns("base.ui");
 
    global.base.ui.Navigator = {
       scrollTo: function(pxs, duration, after) {

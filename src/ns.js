@@ -10,7 +10,7 @@
     * @param {String} namespace
     * @returns {Object}
     */
-   global.base.NS = function(namespace) {
+   global.base.ns = function(namespace) {
       var o = window,
       i, j, d;
       d = namespace.split(".");

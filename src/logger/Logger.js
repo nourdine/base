@@ -2,7 +2,7 @@
 
    "use strict";
 
-   global.base.NS("base.logger");
+   global.base.ns("base.logger");
 
    var suppress = false;
 
